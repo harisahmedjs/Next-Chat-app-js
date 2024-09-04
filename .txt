@@ -1,0 +1,3 @@
+mkdir for folder creation
+Set-Content -Path "page.jsx" -Value "" for file creation in a particular folder
+cd.. to go one back in directory

@@ -1,5 +1,7 @@
 "use client"
+import axios from 'axios'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { HiEye, HiEyeOff } from 'react-icons/hi'
 
@@ -15,16 +17,36 @@ const page = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    const handlelogin = () => {
+    const user = {
+        username,
+        email,
+        password
+    }
+
+  const router = useRouter()
+
+    const handlelogin = async () => {
 
         if (username && email && password) {
-            console.log(username);
-            console.log(email);
-            console.log(password);
+            try {
+               const result =  await axios.post("/api/users/signup", user)
+                  console.log(result.data.savedUser)
+                  if (result.data.savedUser) {
+                     router.push("/home")
+                  }
+                } catch (error) {
+                    console.log(error.message)
+                }
+                // console.log(user)
+                // console.log(username);
+                // console.log(email);
+                // console.log(password);
+                
+                //   setUsername('');
+                //   setEmail('');
+                //   setPassword('');
+         
 
-            setUsername('');
-            setEmail('');
-            setPassword('');
         } else {
             console.log("Please enter all values");
         }
@@ -79,7 +101,7 @@ const page = () => {
                             className='active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 max-md:py-2 bg-violet-500 rounded-xl text-white font-bold text-lg max-md:text-base'>
                             Register
                         </button>
-                        <button
+                        {/* <button
                             className='flex items-center justify-center gap-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 max-md:py-2 max-md:text-base rounded-xl text-gray-700 font-semibold text-lg border-2 border-gray-100' >
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='max-md:w-[16px]'>
                                 <path d="M5.26644 9.76453C6.19903 6.93863 8.85469 4.90909 12.0002 4.90909C13.6912 4.90909 15.2184 5.50909 16.4184 6.49091L19.9093 3C17.7821 1.14545 15.0548 0 12.0002 0C7.27031 0 3.19799 2.6983 1.24023 6.65002L5.26644 9.76453Z" fill="#EA4335" />
@@ -88,7 +110,7 @@ const page = () => {
                                 <path d="M5.27698 14.2663C5.03833 13.5547 4.90909 12.7922 4.90909 11.9984C4.90909 11.2167 5.03444 10.4652 5.2662 9.76294L1.23999 6.64844C0.436587 8.25884 0 10.0738 0 11.9984C0 13.918 0.444781 15.7286 1.23746 17.3334L5.27698 14.2663Z" fill="#FBBC05" />
                             </svg>
                             Sign up with Google
-                        </button>
+                        </button> */}
                     </div>
                     <div className='mt-8  max-md:mt-4 max-md:text-base flex justify-center items-center'>
                         <p className='font-medium text-base'>Already have an account?</p>
