@@ -7,6 +7,8 @@ import { HiEye, HiEyeOff } from 'react-icons/hi'
 
 const page = () => {
 
+    const [loading , setLoading] = useState()
+
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -31,12 +33,13 @@ const page = () => {
             try {
                const result =  await axios.post("/api/users/signup", user)
                   console.log(result.data.savedUser)
-                  if (result.data.savedUser) {
                      router.push("/home")
-                  }
+                  
                 } catch (error) {
                     console.log(error.message)
-                }
+                }finally {
+                    setLoading(false); // Stop loading
+                  }
                 // console.log(user)
                 // console.log(username);
                 // console.log(email);
@@ -98,8 +101,9 @@ const page = () => {
                     <div className='mt-8 max-md:mt-4 flex flex-col gap-y-4'>
                         <button
                             onClick={handlelogin}
-                            className='active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 max-md:py-2 bg-violet-500 rounded-xl text-white font-bold text-lg max-md:text-base'>
-                            Register
+                            className='active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 max-md:py-2 bg-violet-500 rounded-xl text-white font-bold text-lg max-md:text-base'
+                            disabled={loading}>
+                            {loading ? "Loading..." : "Register"}
                         </button>
                         {/* <button
                             className='flex items-center justify-center gap-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 max-md:py-2 max-md:text-base rounded-xl text-gray-700 font-semibold text-lg border-2 border-gray-100' >
