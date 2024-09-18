@@ -14,14 +14,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "please provide a password"],
     },
-    isVerified:{
-        type : Boolean,
-        default :false
-    },
+    imageUrl: {
+        type: String,
+        required: false, // Set to false if the image is optional
+      },
     forgotPasswordToken: String,
     forgotPasswordTokenExpiry: Date,
-    verifyToken : String,
-    verifyTokenExpiry : Date
 })
 
 const User = mongoose.models.users || mongoose.model("users" , userSchema)
