@@ -27,13 +27,20 @@ const Page = () => {
       setLoading(true); // Start loading
       try {
         const result = await axios.post("/api/users/login", loginData);
-        console.log(result.data);
+        // console.log(result.data.success);
         setEmail('');
         setPassword('');
-        router.push("/home")
+
+        if (result.data.success) {
+          router.push("/home");
+        } else {
+          console.log("Login failed, no redirect");
+        }
+        
+        
         // Redirect or perform additional actions
       } catch (error) {
-        console.log(error.message);
+        console.log(error.response.data);
       } finally {
         setLoading(false); // Stop loading
       }

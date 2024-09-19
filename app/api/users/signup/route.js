@@ -28,7 +28,7 @@ export async function POST(request){
       const savedUser = await newUser.save()
       console.log(savedUser)
 
-      console.log("Image URL:", imageUrl);
+      // console.log("Image URL:", imageUrl);
 
     
     return NextResponse.json({ message : "user successfully registered" , success : true , savedUser})

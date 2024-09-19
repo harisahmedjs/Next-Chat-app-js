@@ -35,7 +35,7 @@ const page = () => {
         await uploadBytes(storageRef, image);
 
         const imageUrl = await getDownloadURL(storageRef); // Get the image URL
-        console.log("Image URL to send to backend:", imageUrl); // Add this log to verify
+        // console.log("Image URL to send to backend:", imageUrl); // Add this log to verify
         
         const user = {
           username,
