@@ -9,46 +9,8 @@ import Slider from '../components/Slider'
 const page = () => {
 
  const router = useRouter()
- const [profileData , setProfileData] = useState([])
- const [userData , setUserData] = useState([])
-
- useEffect(() => {
-  // Create an async function inside the useEffect to handle the calls
-  const fetchData = async () => {
-    try {
-      await users();
-      await profile();
-    } catch (error) {
-      console.error("Error fetching data", error);
-    }
-  };
-
-  fetchData(); // Call the async function
-}, []);
-
-useEffect(() => {
-  console.log(userData); // This will only log when userData changes
-}, [userData]);
-
-async function users() {
-  try {
-    const result = await axios.get("/api/users/allusers");
-        setUserData(result.data)
-      } catch (error) {
-    console.error("Error fetching all users", error);
-  }
-}
 
 
-
-async function profile() {
-  try {
-    const result = await axios.post("/api/users/profile");
-    // console.log(result.data);
-  } catch (error) {
-    console.error("Error fetching profile", error);
-  }
-}
 
 // async function handleLogout() {
 //    const res = await axios.get("/api/users/logout")
