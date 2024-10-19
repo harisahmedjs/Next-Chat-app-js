@@ -22,6 +22,6 @@ export function middleware(req) {
     return NextResponse.redirect(loginUrl);
   }
 
-  return NextResponse.next(); // Allow the request to continue if token exists or route is not protected
+  return NextResponse.next(); 
 }
 

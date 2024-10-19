@@ -12,8 +12,8 @@ const Slider = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                await users();
-                await profile();
+                await profile(); // First fetch the profile
+            await users(); 
             } catch (error) {
                 console.error("Error fetching data", error);
             }
@@ -33,7 +33,11 @@ const Slider = () => {
     async function users() {
         try {
             const result = await axios.get("/api/users/allusers");
-            setUserData(result.data);
+    
+            // Assuming `profileData` contains the logged-in user's ID
+            const filteredUsers = result.data.filter(user => user.id !== profileData.id);
+    
+            setUserData(filteredUsers); // Set only the users excluding the logged-in user
         } catch (error) {
             console.error("Error fetching all users", error);
         }
@@ -65,7 +69,7 @@ const Slider = () => {
     };
 
     return (
-        <section className="bg-[#1C1D22] text-white w-[300px]">
+        <section className="bg-[#1C1D22] text-white w-[350px]">
             <div className='flex justify-between items-center px-6 py-2'>
                 <Image
                     src={profileData.imageUrl}
@@ -80,7 +84,7 @@ const Slider = () => {
                 </div>
             </div>
 
-            <div className="px-6 py-2 relative">
+            <div className="px-6 py-2 mt-2 relative">
                 <input
                     type="text"
                     className="w-full p-2  bg-[#26272D] text-white  rounded-lg focus:outline-none "
@@ -125,8 +129,12 @@ const Slider = () => {
                 
             </div>
 
+
             {/* Render User Data */}
-            <div className="flex flex-col gap-y-2">
+            <hr className='mt-2 mb-2' />
+            <h1 className='text-2xl mb-2 mt-2 px-6 py-2'>Messages</h1>
+           
+            <div className="flex flex-col gap-y-3   h-[400px] overflow-y-scroll">
                 {userData.map((item, index) => (
                     <div
                         key={index}
