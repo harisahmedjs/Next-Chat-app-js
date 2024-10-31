@@ -121,7 +121,7 @@ const Slider = ({ onUserSelect }) => {
       <hr className="mt-2 mb-2" />
 
       <div>
-        <h1 className="text-2xl mb-2 mt-2 px-6 py-2">Stories</h1>
+        <h1 className="text-2xl max-lg:text-xl mb-2 mt-2 px-6 py-2">Stories</h1>
         <div className="flex items-center overflow-auto hide-scrollbar smooth-scroll cursor-pointer gap-6 pl-6 py-2">
           <input
             type="file"
@@ -131,7 +131,7 @@ const Slider = ({ onUserSelect }) => {
             onChange={handleImageUpload}
           />
           <div
-            className="w-[60px] h-[60px] p-6 bg-[#F1E0AC] rounded-full flex items-center justify-center cursor-pointer"
+            className="w-[60px] h-[60px] max-lg:w-[54px] max-lg:h-[54px] p-6 bg-[#F1E0AC] rounded-full flex items-center justify-center cursor-pointer"
             onClick={handleIconClick}
           >
             <FaPlus className="text-white text-xl" />
@@ -143,14 +143,14 @@ const Slider = ({ onUserSelect }) => {
               width={200}
               height={180}
               alt="User Image"
-              className="rounded-full w-[60px] h-[60px] object-cover object-top"
+              className="rounded-full w-[60px] h-[60px] max-lg:w-[54px] max-lg:h-[54px] object-cover object-top"
             />
           ))}
         </div>
       </div>
 
       <hr className="mt-2 mb-2" />
-      <h1 className="text-2xl mb-2 mt-2 px-6 py-2">Messages</h1>
+      <h1 className="text-2xl max-lg:text-xl mb-2 mt-2 px-6 py-2">Messages</h1>
 
       <div className="flex flex-col gap-y-3 h-[370px] overflow-y-scroll">
         {userData.map((item, index) => (
