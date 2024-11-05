@@ -139,7 +139,7 @@ const Page = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-[#141416] w-full p-4 h-[646px] overflow-y-scroll">
+              <div className="bg-chat bg-no-repeat bg-cover bg-center w-full p-4 h-[646px] overflow-y-scroll">
                 <div>
                   {sortedMessages.map((item, index) => (
                     <div

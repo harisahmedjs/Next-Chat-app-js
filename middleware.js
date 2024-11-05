@@ -12,7 +12,7 @@ export function middleware(req) {
 
   const token = cookies().get('token')?.value;
 
-  console.log(`Token: ${token}`);
+  // console.log(`Token: ${token}`);
 
   if (!token && protectedRoutes.some(route => pathname.startsWith(route))) {
     const loginUrl = new URL("/", req.nextUrl.origin); 
